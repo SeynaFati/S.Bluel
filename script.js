@@ -52,7 +52,7 @@ function filterCategory(e, works) {
 }
 
 async function fetchAndDisplayWorks(isReload = false) {
-  const worksApiUrl = "https://sbluel-production.up.railway.app/api/works";
+  const worksApiUrl = "http://localhost:5678/api/works";
   let response = await fetch(worksApiUrl);
   let works = await response.json();
 
@@ -116,7 +116,7 @@ document
       return;
     }
 
-    const logsUrl = "https://sbluel-production.up.railway.app/api/users/login";
+    const logsUrl = "http://localhost:5678/api/users/login";
 
     try {
       let response = await fetch(logsUrl, {
@@ -216,7 +216,7 @@ function fetchAndDisplayPhotos() {
   const galleryContainer = document.querySelector(".modal .new-gallery");
   galleryContainer.innerHTML = "";
 
-  const worksApiUrl = "https://sbluel-production.up.railway.app/api/works";
+  const worksApiUrl = "http://localhost:5678/api/works";
   fetch(worksApiUrl)
     .then((response) => response.json())
     .then((works) => {
@@ -250,7 +250,7 @@ function deleteWork(event) {
     return;
   }
 
-  const deleteApiUrl = `https://sbluel-production.up.railway.app/api/works/${workId}`;
+  const deleteApiUrl = `http://localhost:5678/api/works/${workId}`;
   fetch(deleteApiUrl, {
     method: "DELETE",
     headers: {
@@ -369,7 +369,7 @@ function addCategorySelect() {
   defaultOption.disabled = true;
   categorySelect.appendChild(defaultOption);*/
 
-  fetch("https://sbluel-production.up.railway.app/api/categories")
+  fetch("http://localhost:5678/api/categories")
     .then((response) => response.json())
     .then((categories) => {
       categories.forEach((category) => {
@@ -457,17 +457,14 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Token:", token);
 
       try {
-        const response = await fetch(
-          "https://sbluel-production.up.railway.app/api/works",
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              Accept: "application/json",
-            },
-            body: formData,
-          }
-        );
+        const response = await fetch("http://localhost:5678/api/works", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+          },
+          body: formData,
+        });
 
         if (response.ok) {
           alert("Le projet a été ajouté avec succès.");
