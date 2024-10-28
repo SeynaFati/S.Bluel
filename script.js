@@ -52,7 +52,7 @@ function filterCategory(e, works) {
 }
 
 async function fetchAndDisplayWorks(isReload = false) {
-  const worksApiUrl = "http://sbluel-production.up.railway.app/api/works";
+  const worksApiUrl = "https://sbluel-production.up.railway.app/api/works";
   let response = await fetch(worksApiUrl);
   let works = await response.json();
 
@@ -116,7 +116,7 @@ document
       return;
     }
 
-    const logsUrl = "http://sbluel-production.up.railway.app/api/users/login";
+    const logsUrl = "https://sbluel-production.up.railway.app/api/users/login";
 
     try {
       let response = await fetch(logsUrl, {
@@ -216,7 +216,7 @@ function fetchAndDisplayPhotos() {
   const galleryContainer = document.querySelector(".modal .new-gallery");
   galleryContainer.innerHTML = "";
 
-  const worksApiUrl = "http://sbluel-production.up.railway.app/api/works";
+  const worksApiUrl = "https://sbluel-production.up.railway.app/api/works";
   fetch(worksApiUrl)
     .then((response) => response.json())
     .then((works) => {
@@ -250,7 +250,7 @@ function deleteWork(event) {
     return;
   }
 
-  const deleteApiUrl = `http://sbluel-production.up.railway.app/api/works/${workId}`;
+  const deleteApiUrl = `https://sbluel-production.up.railway.app/api/works/${workId}`;
   fetch(deleteApiUrl, {
     method: "DELETE",
     headers: {
@@ -369,7 +369,7 @@ function addCategorySelect() {
   defaultOption.disabled = true;
   categorySelect.appendChild(defaultOption);*/
 
-  fetch("http://sbluel-production.up.railway.app/api/categories")
+  fetch("https://sbluel-production.up.railway.app/api/categories")
     .then((response) => response.json())
     .then((categories) => {
       categories.forEach((category) => {
@@ -458,7 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         const response = await fetch(
-          "http://sbluel-production.up.railway.app/api/works",
+          "https://sbluel-production.up.railway.app/api/works",
           {
             method: "POST",
             headers: {
