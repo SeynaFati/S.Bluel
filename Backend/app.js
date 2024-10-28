@@ -7,14 +7,12 @@ const swaggerUi = require("swagger-ui-express");
 const yaml = require("yamljs");
 const swaggerDocs = yaml.load("swagger.yaml");
 const app = express();
-//const allowedOrigins = ["https://sophiebluel-architect.netlify.app"];
-const corsOptions = {
-  origin: "*", // Autoriser toutes les origines
-  methods: ["GET", "POST", "PUT", "DELETE"], // Limitez aux méthodes que vous utilisez
-  allowedHeaders: ["Content-Type", "Authorization"], // Ajoutez les en-têtes nécessaires
-};
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "https://sophiebluel-architect.netlify.app", // Remplacez par votre URL de frontend
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
